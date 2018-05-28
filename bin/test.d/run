@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+compose="docker-compose -f docker-compose.test.yml"
+
+echo "[test]: making sure test environment is running..."
+$compose up -d
+
+echo "[test]: running mix test"
+$compose exec test /app/bin/docker/test-runner.sh $@

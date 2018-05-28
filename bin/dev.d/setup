@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+echo "[setup] checking dependency: docker"
+if [ ! $(which docker) ]; then
+  echo "Please install docker first (https://docs.docker.com/install/)"
+  exit 1
+fi
+
+echo "[setup] Building dev environment"
+docker-compose build
+docker-compose run web mix deps.get
+
+echo "[setup] Migrating database"
+docker-compose run web mix ecto.migrate
+
+echo "[setup] Downloading assets"
+docker-compose run web /bin/sh -c "cd assets && yarn install"
+
+echo "[setup] Building test environment"
+docker-compose -f docker-compose.test.yml build

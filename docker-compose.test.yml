@@ -1,0 +1,35 @@
+version: "3.0"
+
+services:
+  test:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    command: /app/bin/docker/test-entrypoint.sh
+    depends_on:
+      - test_db
+    ports:
+      - "4000:4000"
+    environment:
+      MIX_ENV: "test"
+      POSTGRES_HOST: "test_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - .:/app
+      - test_deps:/app/deps
+      - test_build:/app/_build
+
+  test_db:
+    image: postgres:9.6.2
+    environment:
+      POSTGRES_DB: "quiz_test"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - test_db-volume:/var/lib/postgresql/data
+
+volumes:
+  test_db-volume:
+  test_deps:
+  test_build:

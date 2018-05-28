@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+function main {
+  cmd=$1
+  [[ $# != 0 ]] && shift
+  args=$@
+  path=bin/dev.d/$cmd
+
+  if [[ $cmd == "" ]]; then
+    bin/dev.d/help
+    exit 1
+  fi
+
+  if [[ ! -x "$path" ]]; then
+    bin/dev.d/help
+    RED_COLOR='\033[0;31m'
+    echo -e "\n${RED_COLOR}command $cmd not found"
+    exit 1
+  fi
+
+  $path $args
+}
+
+main $@

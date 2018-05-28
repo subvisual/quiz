@@ -1,0 +1,4 @@
+#!/bin/sh
+
+docker-compose exec web \
+  iex --sname quiz-console --cookie quiz --remsh quiz@quiz-web
