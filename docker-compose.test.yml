@@ -9,16 +9,17 @@ services:
     depends_on:
       - test_db
     ports:
-      - "4000:4000"
+      - "4001:4001"
     environment:
       MIX_ENV: "test"
       POSTGRES_HOST: "test_db"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "quiz_test"
     volumes:
       - .:/app
-      - test_deps:/app/deps
-      - test_build:/app/_build
+      - ./docker/deps:/app/deps
+      - ./docker/_build:/app/_build
 
   test_db:
     image: postgres:9.6.2
@@ -31,5 +32,3 @@ services:
 
 volumes:
   test_db-volume:
-  test_deps:
-  test_build:

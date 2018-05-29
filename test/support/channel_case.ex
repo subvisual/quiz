@@ -24,14 +24,4 @@ defmodule QuizWeb.ChannelCase do
       @endpoint QuizWeb.Endpoint
     end
   end
-
-
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Quiz.Repo)
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Quiz.Repo, {:shared, self()})
-    end
-    :ok
-  end
-
 end

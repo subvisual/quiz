@@ -13,5 +13,5 @@ $compose exec test mix deps.get
 echo "[setup] waiting for postgres"
 $compose exec test ./bin/docker/wait-for test_db:5432
 
-echo "[setup] running mix ecto.migrate"
-$compose exec test mix ecto.migrate
+echo "[setup] migrating database"
+docker-compose run web mix do event_store.create, event_store.init

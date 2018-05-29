@@ -5,7 +5,7 @@ defmodule Quiz.Application do
     import Supervisor.Spec
 
     children = [
-      supervisor(QuizWeb.Endpoint, []),
+      supervisor(QuizWeb.Endpoint, [])
     ]
 
     opts = [strategy: :one_for_one, name: Quiz.Supervisor]

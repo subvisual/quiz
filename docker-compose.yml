@@ -19,11 +19,13 @@ services:
       POSTGRES_PASSWORD: "postgres"
     volumes:
       - .:/app
-      - ./deps:/app/deps
-      - build:/app/_build
+      - ./docker/deps:/app/deps
+      - ./docker/_build:/app/_build
 
   db:
     image: postgres:9.6.2
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_DB: "quiz_dev"
       POSTGRES_USER: "postgres"
@@ -33,6 +35,4 @@ services:
       - db-volume:/var/lib/postgresql/data
 
 volumes:
-  eventstore-volume:
   db-volume:
-  build:
