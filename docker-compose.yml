@@ -14,11 +14,12 @@ services:
     environment:
       MIX_ENV: "dev"
       POSTGRES_HOST: "db"
+      POSTGRES_DB: "quiz_dev"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
     volumes:
       - .:/app
-      - deps:/app/deps
+      - ./deps:/app/deps
       - build:/app/_build
 
   db:
@@ -32,6 +33,6 @@ services:
       - db-volume:/var/lib/postgresql/data
 
 volumes:
+  eventstore-volume:
   db-volume:
-  deps:
   build:

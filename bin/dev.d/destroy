@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -e
-
-echo "[destroy] Removing dev database"
-docker-compose rm -v db

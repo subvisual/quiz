@@ -13,7 +13,7 @@ docker-compose build
 docker-compose run web mix deps.get
 
 echo "[setup] Migrating database"
-docker-compose run web mix ecto.migrate
+docker-compose run web mix do event_store.create, event_store.init
 
 echo "[setup] Downloading assets"
 docker-compose run web /bin/sh -c "cd assets && yarn install"
