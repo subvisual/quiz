@@ -6,10 +6,9 @@ config :quiz, QuizWeb.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    node: [
-      "node_modules/brunch/bin/brunch",
+    yarn: [
+      "run",
       "watch",
-      "--stdin",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

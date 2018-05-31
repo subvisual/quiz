@@ -8,6 +8,7 @@ services:
     command: "/app/bin/docker/web-entrypoint.sh"
     ports:
       - "4000:4000"
+      - "8000:8000"
     depends_on:
       - db
     hostname: quiz-web
@@ -21,11 +22,10 @@ services:
       - .:/app
       - ./docker/deps:/app/deps
       - ./docker/_build:/app/_build
+      - ./docker/node_modules:/app/assets/node_modules
 
   db:
     image: postgres:9.6.2
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_DB: "quiz_dev"
       POSTGRES_USER: "postgres"
