@@ -11,7 +11,9 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
-config :commanded, event_store_adapter: Commanded.EventStore.Adapters.EventStore
+config :commanded,
+  event_store_adapter: Commanded.EventStore.Adapters.EventStore,
+  include_execution_result: true
 
 config :eventstore, EventStore.Storage,
   serializer: Commanded.Serialization.JsonSerializer,

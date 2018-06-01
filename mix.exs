@@ -9,8 +9,8 @@ defmodule Quiz.Mixfile do
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
-      aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -36,15 +36,14 @@ defmodule Quiz.Mixfile do
       {:commanded_eventstore_adapter, "~> 0.3"},
       {:eventstore,
        github: "commanded/eventstore", ref: "792a4a1", override: true},
-      {:uuid, "~> 1.1"}
+      {:uuid, "~> 1.1"},
+      {:vex, "~> 0.7.0"}
     ]
   end
 
   defp aliases do
     [
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["test"]
+      test: ["test --no-start"]
     ]
   end
 end

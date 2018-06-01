@@ -5,3 +5,5 @@ config :quiz, QuizWeb.Endpoint,
   server: false
 
 config :logger, level: :warn
+
+config :commanded, event_store_adapter: Commanded.EventStore.Adapters.InMemory
