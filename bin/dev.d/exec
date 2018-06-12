@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -e
-
-compose="docker-compose"
-
-$compose up -d
-
-$compose exec web $@

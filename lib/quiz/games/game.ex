@@ -1,15 +1,18 @@
 defmodule Quiz.Games.Game do
-  defstruct [:id, players: []]
+  defstruct [:uuid, players: []]
 
   alias Quiz.{Commands, Events}
 
-  def execute(%{id: nil} = _game, %Commands.CreateGame{id: id, players: players}) do
-    %Events.GameCreated{id: id, players: players}
+  def execute(%{uuid: nil} = _game, %Commands.StartGame{
+        uuid: uuid,
+        players: players
+      }) do
+    %Events.GameStarted{uuid: uuid, players: players}
   end
 
-  def apply(%{} = game, %Events.GameCreated{} = game_created) do
+  def apply(%{} = game, %Events.GameStarted{} = game_created) do
     %__MODULE__{
-      id: game_created.id,
+      uuid: game_created.uuid,
       players: game_created.players
     }
   end

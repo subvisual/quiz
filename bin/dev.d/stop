@@ -1,7 +1,0 @@
-#!/bin/sh
-
-set -e
-
-compose="docker-compose"
-
-$compose stop

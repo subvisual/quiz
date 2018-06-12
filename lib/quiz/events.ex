@@ -1,3 +1,3 @@
 defmodule Quiz.Events do
-  defmodule GameCreated, do: defstruct([:id, :players])
+  defmodule GameStarted, do: defstruct([:uuid, :players])
 end

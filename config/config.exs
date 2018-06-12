@@ -1,5 +1,9 @@
 use Mix.Config
 
+config :quiz, ecto_repos: [Quiz.Repo]
+
+config :quiz, Quiz.Repo, adapter: Ecto.Adapters.Postgres
+
 config :quiz, QuizWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base:
@@ -15,12 +19,13 @@ config :commanded,
   event_store_adapter: Commanded.EventStore.Adapters.EventStore,
   include_execution_result: true
 
+config :commanded_ecto_projections, repo: Quiz.Repo
+
 config :eventstore, EventStore.Storage,
   serializer: Commanded.Serialization.JsonSerializer,
-  username: {:system, "POSTGRES_USER"},
-  password: {:system, "POSTGRES_PASSWORD"},
-  database: {:system, "POSTGRES_DB"},
-  hostname: {:system, "POSTGRES_HOST"},
+  username: {:system, "POSTGRESQL_USER"},
+  password: {:system, "POSTGRESQL_PASSWORD"},
+  hostname: {:system, "POSTGRESQL_HOST"},
   pool_size: 10
 
 import_config "#{Mix.env()}.exs"

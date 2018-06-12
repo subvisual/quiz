@@ -26,3 +26,7 @@ config :quiz, QuizWeb.Endpoint,
 config :logger, :console, format: "[$level] $message\n"
 
 config :phoenix, :stacktrace_depth, 20
+
+config :eventstore, EventStore.Storage, database: "quiz_test"
+
+config :quiz, Quiz.Repo, database: "quiz_test"

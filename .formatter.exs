@@ -45,6 +45,8 @@
     adapter: :*,
 
     # commanded
-    dispatch: :*
+    dispatch: :*,
+    identify: :*,
+    middleware: :*
   ]
 ]

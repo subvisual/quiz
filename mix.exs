@@ -26,7 +26,9 @@ defmodule Quiz.Mixfile do
 
   defp deps do
     [
+      {:ecto, "~> 2.1"},
       {:phoenix, "~> 1.3.2"},
+      {:phoenix_ecto, "~> 3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
@@ -36,14 +38,13 @@ defmodule Quiz.Mixfile do
       {:commanded_eventstore_adapter, "~> 0.3"},
       {:eventstore,
        github: "commanded/eventstore", ref: "792a4a1", override: true},
+      {:commanded_ecto_projections, "~> 0.6"},
       {:uuid, "~> 1.1"},
       {:vex, "~> 0.7.0"}
     ]
   end
 
   defp aliases do
-    [
-      test: ["test --no-start"]
-    ]
+    []
   end
 end

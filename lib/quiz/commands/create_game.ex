@@ -1,10 +1,10 @@
 defmodule Quiz.Commands do
-  defmodule CreateGame do
-    defstruct [:id, players: []]
+  defmodule StartGame do
+    defstruct [:uuid, players: []]
 
     use Vex.Struct
 
-    validates :id, presence: true
+    validates :uuid, presence: true
     validates :players, length: [min: 3, max: 4]
   end
 end

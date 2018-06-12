@@ -7,21 +7,24 @@ defmodule Quiz.DataCase do
     end
   end
 
-  # setup do
-  #   {:ok, event_store} = Commanded.EventStore.Adapters.InMemory.start_link({})
-  #   Application.ensure_all_started(:quiz)
+  setup do
+    {:ok, event_store} = Commanded.EventStore.Adapters.InMemory.start_link()
+    {:ok, _} = Application.ensure_all_started(:quiz)
 
-  #   on_exit(fn ->
-  #     Application.stop(:quiz)
-  #     shutdown(event_store)
-  #   end)
-  # end
+    on_exit(fn ->
+      :ok = Application.stop(:quiz)
 
-  # def shutdown(pid) when is_pid(pid) do
-  #   Process.unlink(pid)
-  #   Process.exit(pid, :shutdown)
+      shutdown(event_store)
+    end)
 
-  #   ref = Process.monitor(pid)
-  #   assert_receive {:DOWN, ^ref, _, _, _}, 5_000
-  # end
+    :ok
+  end
+
+  def shutdown(pid) when is_pid(pid) do
+    Process.unlink(pid)
+    Process.exit(pid, :shutdown)
+
+    ref = Process.monitor(pid)
+    assert_receive {:DOWN, ^ref, _, _, _}, 5_000
+  end
 end
