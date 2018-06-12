@@ -4,6 +4,6 @@ defmodule Quiz.CommandRouter do
   alias Quiz.{Commands, Games.Game}
 
   middleware Quiz.Middleware.Validation
-  identify Game, by: :id
+  identify Game, by: :uuid
   dispatch [Commands.StartGame], to: Game
 end

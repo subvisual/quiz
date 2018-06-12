@@ -2,7 +2,9 @@ use Mix.Config
 
 config :quiz, ecto_repos: [Quiz.Repo]
 
-config :quiz, Quiz.Repo, adapter: Ecto.Adapters.Postgres
+config :quiz, Quiz.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  migration_source: "projection_migrations"
 
 config :quiz, QuizWeb.Endpoint,
   url: [host: "localhost"],

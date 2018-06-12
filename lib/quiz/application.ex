@@ -6,7 +6,8 @@ defmodule Quiz.Application do
 
     children = [
       supervisor(QuizWeb.Endpoint, []),
-      supervisor(Quiz.Repo, [])
+      supervisor(Quiz.Repo, []),
+      worker(Quiz.Games.Projector, [], id: :games_projector)
     ]
 
     opts = [strategy: :one_for_one, name: Quiz.Supervisor]
